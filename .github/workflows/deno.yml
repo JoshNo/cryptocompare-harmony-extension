@@ -27,6 +27,10 @@ jobs:
         uses: denoland/setup-deno@004814556e37c54a2f6e31384c9e18e983317366
         with:
           deno-version: v1.x
+      - name: create .env file
+        run: 
+          touch .env
+          echo API_KEY=${{secrets.API_KEY}} >> .env
 
       # Uncomment this step to verify the use of 'deno fmt' on each commit.
       # - name: Verify formatting
