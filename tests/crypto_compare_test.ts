@@ -9,7 +9,7 @@ Deno.test(".env check", () => {
 })
 
 Deno.test("Check API", async() => {
-    const res = await soxa.get("https://min-api.cryptocompare.com/data/price?fsym=BTC&tsyms=EUR")
+    const res = await soxa.get("https://min-api.cryptocompare.com/data/price?fsym=BTC&tsyms=EUR", HEADER)
     assertEquals(res.status, 200)
 })
 
