@@ -1,4 +1,4 @@
-import {soxa} from "./deps.ts"
+import {soxa} from "../deps.ts"
 
 export class CryptoCompare {
 
@@ -25,7 +25,7 @@ export class CryptoCompare {
         }
     }
     
-    //queries and array of symbols and their full data regarding USD/EUR
+    //queries and array of symbols and their full data regarding USD and EUR
     async FullSymbolData(symbols: string[]) {
         try {
             return await soxa.get("https://min-api.cryptocompare.com/data/pricemultifull?fsyms=" + symbols.join() + "&tsyms=USD,EUR")
