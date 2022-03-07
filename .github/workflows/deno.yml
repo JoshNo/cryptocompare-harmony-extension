@@ -28,7 +28,7 @@ jobs:
         with:
           deno-version: v1.x
       - name: create .env file
-        run: 
+        run: |
           touch .env
           echo API_KEY=${{secrets.API_KEY}} >> .env
 
