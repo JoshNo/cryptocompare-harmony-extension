@@ -1,3 +1,5 @@
 
 .env
 .vscode/settings.json
+#used bot.ts as minimal implementation of a discord bot for testing purposes
+bot.ts

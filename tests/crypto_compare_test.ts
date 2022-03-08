@@ -1,5 +1,4 @@
-import {assert, assertEquals} from "https://deno.land/std@0.128.0/testing/asserts.ts"
-import {CryptoCompare, soxa} from "../deps.ts"
+import {assert, assertEquals, CryptoCompare, soxa} from "../deps.ts"
 
 const API_KEY = Deno.env.get("API_KEY")
 const HEADER = { headers: {"Authorization": "Apikey " + API_KEY}}
