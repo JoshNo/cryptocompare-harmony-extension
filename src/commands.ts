@@ -46,7 +46,6 @@ export class LastVolume extends Command {
             let reply = "Last volume \n"
             this.crypt.FullSymbolData(symbols).then(function(val) {
                 for(const symbol in val.data.DISPLAY) {
-                    console.log(val.data.DISPLAY)
                     const value = val.data.DISPLAY[symbol]
                     reply += symbol + ": for USD: " + value.USD.LASTVOLUME + ", for EUR: " + value.EUR.LASTVOLUME + "\n"
                 }
@@ -68,9 +67,8 @@ export class Marketcap extends Command {
             let reply = "Marketcap \n"
             this.crypt.FullSymbolData(symbols).then(function(val) {
                 for(const symbol in val.data.DISPLAY) {
-                    console.log(val.data.DISPLAY)
                     const value = val.data.DISPLAY[symbol]
-                    reply += symbol + ": for USD: " + value.USD.MARKETCAP + ", for EUR: " + value.EUR.MARKETCAP + "\n"
+                    reply += symbol + ": for USD: " + value.USD.MKTCAP + ", for EUR: " + value.EUR.MKTCAP + "\n"
                 }
                 ctx.message.reply(`\`\`\`${reply}\`\`\``)
             })
@@ -90,7 +88,6 @@ export class Change24 extends Command {
             let reply = "Change in the last 24hours \n"
             this.crypt.FullSymbolData(symbols).then(function(val) {
                 for(const symbol in val.data.DISPLAY) {
-                    console.log(val.data.DISPLAY)
                     const value = val.data.DISPLAY[symbol]
                     reply += symbol + ": for USD: " + value.USD.CHANGE24HOUR + ", for EUR: " + value.EUR.CHANGE24HOUR + "\n"
                 }
@@ -112,7 +109,6 @@ export class Highday extends Command {
             let reply = "Change in the last 24hours \n"
             this.crypt.FullSymbolData(symbols).then(function(val) {
                 for(const symbol in val.data.DISPLAY) {
-                    console.log(val.data.DISPLAY)
                     const value = val.data.DISPLAY[symbol]
                     reply += symbol + ": for USD: " + value.USD.HIGHDAY + ", for EUR: " + value.EUR.HIGHDAY + "\n"
                 }
@@ -123,7 +119,7 @@ export class Highday extends Command {
 
 //command to get the lowest price from today in EUR/USD
 export class Lowday extends Command {
-    name = "highday"
+    name = "lowday"
     guildOnly = true
     usage = "**USAGE** !lowday SYMBOL(s)"
     description = "Command to get the lowest price today for the symbols provided in USD/EUR."
@@ -134,11 +130,94 @@ export class Lowday extends Command {
             let reply = "Change in the last 24hours \n"
             this.crypt.FullSymbolData(symbols).then(function(val) {
                 for(const symbol in val.data.DISPLAY) {
-                    console.log(val.data.DISPLAY)
                     const value = val.data.DISPLAY[symbol]
                     reply += symbol + ": for USD: " + value.USD.LOWDAY + ", for EUR: " + value.EUR.LOWDAY + "\n"
                 }
                 ctx.message.reply(`\`\`\`${reply}\`\`\``)
             })
+    }
+}
+
+//command to get the supply for specifie symbols
+export class Supply extends Command {
+    name = "supply"
+    guildOnly = true
+    usage = "**USAGE** !supply SYMBOL(s)"
+    description = "Command to get the current supply for the symbols provided"
+
+    crypt: CryptoCompare = new CryptoCompare()
+    execute(ctx : CommandContext): void {
+        const symbols = ctx.rawArgs
+        let reply = "Supply \n"
+        this.crypt.FullSymbolData(symbols).then(function(val) {
+            for(const symbol in val.data.DISPLAY) {
+                const value = val.data.DISPLAY[symbol]
+                reply += symbol + ": " + value.EUR.SUPPLY + "\n"
+            }
+            ctx.message.reply(`\`\`\`${reply}\`\`\``)
+        })
+    }
+}
+
+//command to get the change in the last hour for specified symbols
+export class ChangeHour extends Command {
+    name = "changehour"
+    guildOnly = true
+    usage = "**USAGE** !changehour SYMBOL(s)"
+    description = "Command to get the change in the last hour for the symbols provided in USD/EUR"
+
+    crypt: CryptoCompare = new CryptoCompare()
+    execute(ctx : CommandContext): void {
+        const symbols = ctx.rawArgs
+        let reply = "Change in the last hour \n"
+        this.crypt.FullSymbolData(symbols).then(function(val) {
+            for(const symbol in val.data.DISPLAY) {
+                const value = val.data.DISPLAY[symbol]
+                reply += symbol + ": for USD: " + value.USD.CHANGEHOUR + ", for EUR: " + value.EUR.CHANGEHOUR + "\n"
+            }
+            ctx.message.reply(`\`\`\`${reply}\`\`\``)
+        })
+    }
+}
+
+//command to get the last market where a transaction took place in USD/EUR
+export class LastMarket extends Command {
+    name = "lastmarket"
+    guildOnly = true
+    usage = "**USAGE** !lastmarket SYMBOL(s)"
+    description = "Command to get the last market for the specified symbols and USD/EUR"
+
+    crypt: CryptoCompare = new CryptoCompare()
+    execute(ctx : CommandContext): void {
+        const symbols = ctx.rawArgs
+        let reply = "Last market \n"
+        this.crypt.FullSymbolData(symbols).then(function(val) {
+            for(const symbol in val.data.DISPLAY) {
+                const value = val.data.DISPLAY[symbol]
+                reply += symbol + ": for USD: " + value.USD.LASTMARKET + ", for EUR: " + value.EUR.LASTMARKET + "\n"
+            }
+            ctx.message.reply(`\`\`\`${reply}\`\`\``)
+        })
+    }
+}
+
+//command to get the volume in the last 24 hours
+export class TotalVolume24h extends Command {
+    name = "totalvolume24h"
+    guildOnly = true
+    usage = "**USAGE** !volume24h SYMBOL(s)"
+    description = "Command to get the volume in the last 24hours for the specified symbols"
+
+    crypt: CryptoCompare = new CryptoCompare()
+    execute(ctx : CommandContext): void {
+        const symbols = ctx.rawArgs
+        let reply = "Volume 24hours \n"
+        this.crypt.FullSymbolData(symbols).then(function(val) {
+            for(const symbol in val.data.DISPLAY) {
+                const value = val.data.DISPLAY[symbol]
+                reply += symbol + ": " + value.EUR.TOTALVOLUME24H + "\n"
+            }
+            ctx.message.reply(`\`\`\`${reply}\`\`\``)
+        })
     }
 }
