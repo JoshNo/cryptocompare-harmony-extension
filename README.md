@@ -1,7 +1,6 @@
 ![workflow_codeql](https://github.com/JoshNo/CryptoCompare-Discord-Deno/actions/workflows/codeql.yml/badge.svg)
 ![workflow_deno](https://github.com/JoshNo/CryptoCompare-Discord-Deno/actions/workflows/deno.yml/badge.svg)
 ![GitHub language count](https://img.shields.io/github/languages/count/JoshNo/CryptoCompare-Discord-Deno)
-![Lines of code](https://img.shields.io/tokei/lines/github/JoshNo/CryptoCompare-Discord-Deno)
 
 **Some CryptoCompare functions for your Deno-based [Harmony](https://deno.land/x/harmony) Discord Bot**
 
