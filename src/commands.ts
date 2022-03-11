@@ -221,3 +221,49 @@ export class TotalVolume24h extends Command {
         })
     }
 }
+
+//Command to get last update for specified symbols
+export class LastUpdate extends Command {
+    name = "lastupdate"
+    guildOnly = true
+    usage = "**USAGE** !lastupdate SYMBOL(s)"
+    description = "Command to get last update for the specified symbol(s)"
+
+    crypt: CryptoCompare = new CryptoCompare()
+    execute(ctx : CommandContext): void {
+        const symbols = ctx.rawArgs
+        let reply = "Last Update \n"
+        this.crypt.FullSymbolData(symbols).then(function(val) {
+            for(const symbol in val.data.DISPLAY) {
+                const value = val.data.DISPLAY[symbol]
+                reply += symbol + ": " + value.EUR.LASTUPDATE + "\n"
+            }
+            ctx.message.reply(`\`\`\`${reply}\`\`\``)
+        })
+    }
+}
+
+//Command to get all supported symbols
+export class SymbolList extends Command {
+    name = "symbols"
+    guildOnly = true
+    usage = "**USAGE** !symbols"
+    description = "Command to get all supported symbols"
+
+    crypt: CryptoCompare = new CryptoCompare()
+    execute(ctx: CommandContext): void {
+        let reply = "Supported symbols\n"
+        this.crypt.SymbolList().then(function(val) {
+            for(const symbol in val.data.Data) {
+                reply += val.data.Data[symbol].symbol+ ", "
+                //discord allows a max length of 2000 chars per message
+                if(reply.length >= 1000) {
+                    //cut away unnecessary commas
+                    const newreply = reply.slice(0, -2)
+                    ctx.message.reply(`\`\`\`${newreply}\`\`\``)
+                    reply = ""
+                }
+            }
+        })
+    }
+}

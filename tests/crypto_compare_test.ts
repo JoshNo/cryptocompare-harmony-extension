@@ -39,3 +39,12 @@ Deno.test("FullSymbolData", async() => {
         assert("We received our promise", "Promise expected")
     }
 })
+
+Deno.test("SymbolList", async() => {
+    const crypt = new CryptoCompare()
+    const res = await crypt.SymbolList()
+
+    if(res !== undefined || res !== null) {
+        assert("We received our promise", "Primise expected")
+    }
+})

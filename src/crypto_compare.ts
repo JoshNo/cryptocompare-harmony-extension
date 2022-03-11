@@ -28,7 +28,16 @@ export class CryptoCompare {
     //queries and array of symbols and their full data regarding USD and EUR
     async FullSymbolData(symbols: string[]) {
         try {
-            return await soxa.get("https://min-api.cryptocompare.com/data/pricemultifull?fsyms=" + symbols.join() + "&tsyms=USD,EUR")
+            return await soxa.get("https://min-api.cryptocompare.com/data/pricemultifull?fsyms=" + symbols.join() + "&tsyms=USD,EUR", this.headers)
+        } catch (err) {
+            console.error(err)
+            return err
+        }
+    }
+
+    async SymbolList() {
+        try {
+            return await soxa.get("https://min-api.cryptocompare.com/data/blockchain/list", this.headers)
         } catch (err) {
             console.error(err)
             return err
