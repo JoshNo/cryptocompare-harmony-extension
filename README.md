@@ -14,7 +14,7 @@ API_KEY=
 A minimal example of using this extension:
 ```js
 import { CommandClient, Intents } from 'https://deno.land/x/harmony@v2.5.1/mod.ts'
-import { CryptoCompareExt } from 'https://deno.land/x/cryptocompare-harmony-extension/mod.ts'
+import { CryptoCompareExt } from 'https://deno.land/x/cryptocompare_harmony_extension/mod.ts'
 
 const client = new CommandClient({
   prefix: '!'
