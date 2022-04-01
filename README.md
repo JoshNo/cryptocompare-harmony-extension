@@ -13,7 +13,7 @@ API_KEY=
 ## Example
 A minimal example of using this extension:
 ```js
-import { CommandClient, Intents } from 'https://deno.land/x/harmony/mod.ts'
+import { CommandClient, Intents } from 'https://deno.land/x/harmony@v2.5.1/mod.ts'
 import { CryptoCompareExt } from 'https://deno.land/x/cryptocompare-harmony-extension/mod.ts'
 
 const client = new CommandClient({
@@ -27,5 +27,5 @@ client.on('ready', () => {
   console.log(`Ready! User: ${client.user?.tag}`)
 })
 
-client.connect(BOT_TOKEN, Intents.GuildMembers)
+client.connect(BOT_TOKEN, Intents.None)
 ```
